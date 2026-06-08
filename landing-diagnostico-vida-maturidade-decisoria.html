@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico VIDA de Maturidade Decisória Patrimonial™ · Ivan Vianna CFP®</title>
+<meta name="description" content="Mapeamento profundo das forças invisíveis que moldam suas decisões patrimoniais. Memórias, narrativas e padrões que operam abaixo da consciência.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --v:#1A3C2E;--vm:#2E5C46;--vc:#3d7a5e;
+  --d:#f8e38c;--dm:#d7ae4d;--de:#b8922a;
+  --cr:#fdf9f0;--ce:#f0ead8;--br:#ffffff;
+  --tx:#1a1a1a;--ts:#3a3a3a;--bo:rgba(26,60,46,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Instrument Sans',sans-serif;background:var(--cr);color:var(--tx);overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(160deg,var(--v) 0%,#091a11 100%);
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:5rem 1.5rem 4rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(248,227,140,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(248,227,140,.025) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 85% 15%,rgba(46,92,70,.5) 0%,transparent 55%);
+  pointer-events:none;
+}
+
+.hero-inner{max-width:720px;width:100%;position:relative;z-index:1}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--d);border:1px solid rgba(248,227,140,.28);
+  border-radius:2rem;padding:.35rem 1.1rem;margin-bottom:2rem;
+}
+
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,5vw,3.5rem);font-weight:700;
+  line-height:1.08;color:var(--br);margin-bottom:.75rem;
+}
+.hero-h1 em{font-style:italic;color:var(--d)}
+
+.hero-sub{
+  font-size:1.05rem;color:#ffffff;
+  line-height:1.75;margin-bottom:2rem;font-weight:300;
+  max-width:580px;margin-left:auto;margin-right:auto;
+}
+
+.hero-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-style:italic;color:var(--d);
+  border-left:2px solid rgba(248,227,140,.35);
+  padding:.75rem 1.25rem;text-align:left;
+  margin:0 auto 2.5rem;max-width:560px;line-height:1.6;
+}
+
+/* Preço hero */
+.preco-hero{
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(248,227,140,.2);
+  border-radius:.75rem;padding:1.5rem 2rem;
+  margin:0 auto 2rem;max-width:440px;
+}
+.preco-parcelado{
+  font-size:.82rem;color:#ffffff;margin-bottom:.35rem;
+}
+.preco-valor-parcelado{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;color:var(--br);font-weight:700;line-height:1;
+}
+.preco-parcelas{font-size:.82rem;color:#ffffff;margin-bottom:.75rem}
+.preco-sep{height:1px;background:rgba(255,255,255,.1);margin-bottom:.75rem}
+.preco-avista-label{font-size:.75rem;color:#ffffff;margin-bottom:.2rem}
+.preco-avista{
+  font-family:'DM Mono',monospace;
+  font-size:1.1rem;color:var(--d);font-weight:500;
+}
+
+.btn-comprar{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  width:100%;max-width:440px;
+  padding:1.1rem 2rem;
+  background:linear-gradient(135deg,var(--d) 0%,var(--dm) 100%);
+  border:none;border-radius:.5rem;font-family:'Instrument Sans',sans-serif;
+  font-size:1rem;font-weight:700;color:var(--v);cursor:pointer;
+  text-decoration:none;transition:all .2s;letter-spacing:.02em;
+  margin-bottom:.75rem;
+}
+.btn-comprar:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(248,227,140,.25)}
+
+.hero-garantia{font-size:.78rem;color:#ffffff;margin-bottom:2rem}
+
+/* selo Hotmart */
+.hero-hotmart{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.72rem;color:#ffffff;
+}
+
+/* ── SEÇÃO: O QUE É ── */
+.sec{padding:5rem 1.5rem}
+.sec-inner{max-width:780px;margin:0 auto}
+
+.sec-label{
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--de);margin-bottom:.5rem;font-weight:600;
+}
+.sec-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;
+  color:var(--v);line-height:1.15;margin-bottom:1rem;
+}
+.sec-texto{
+  font-size:1rem;color:var(--ts);line-height:1.8;
+  margin-bottom:1.25rem;font-weight:300;
+}
+.sec-destaque{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-style:italic;color:var(--v);
+  border-left:3px solid var(--dm);padding:.75rem 1.25rem;
+  margin:1.5rem 0;line-height:1.6;
+  background:rgba(26,60,46,.04);border-radius:0 .35rem .35rem 0;
+}
+
+/* ── DIMENSÕES ── */
+.dims-sec{background:var(--v);padding:5rem 1.5rem}
+.dims-inner{max-width:780px;margin:0 auto}
+.dims-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;
+  color:var(--d);margin-bottom:.5rem;text-align:center;
+}
+.dims-sub{font-size:.9rem;color:#ffffff;text-align:center;margin-bottom:3rem;font-weight:300}
+
+.dims-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.dim-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(248,227,140,.12);
+  border-radius:.65rem;padding:1.5rem;
+}
+.dim-letra{
+  font-family:'DM Mono',monospace;font-size:.75rem;
+  color:var(--d);font-weight:700;letter-spacing:.1em;
+  margin-bottom:.5rem;
+}
+.dim-nome{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:700;color:var(--br);
+  margin-bottom:.5rem;
+}
+.dim-desc{font-size:.88rem;color:#ffffff;line-height:1.65;margin-bottom:.75rem}
+.dim-exemplo{
+  font-size:.8rem;color:#f8e38c;
+  font-style:italic;line-height:1.55;
+  border-top:1px solid rgba(248,227,140,.1);
+  padding-top:.65rem;margin-top:.5rem;
+}
+
+/* ── COMO FUNCIONA ── */
+.como-sec{background:var(--ce);padding:5rem 1.5rem}
+.como-inner{max-width:680px;margin:0 auto}
+.como-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;
+  color:var(--v);margin-bottom:3rem;text-align:center;
+}
+
+.passo{
+  display:flex;gap:1.25rem;align-items:flex-start;
+  margin-bottom:2rem;
+}
+.passo-num{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--v);color:var(--d);
+  font-family:'DM Mono',monospace;font-size:.85rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.passo-corpo{}
+.passo-titulo{font-size:1rem;font-weight:700;color:var(--v);margin-bottom:.35rem}
+.passo-desc{font-size:.92rem;color:var(--ts);line-height:1.7;font-weight:300}
+
+/* ── PERFIS ── */
+.perfis-sec{padding:5rem 1.5rem}
+.perfis-inner{max-width:780px;margin:0 auto}
+.perfis-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;
+  color:var(--v);margin-bottom:.5rem;text-align:center;
+}
+.perfis-sub{font-size:.9rem;color:var(--ts);text-align:center;margin-bottom:2.5rem;font-weight:300}
+
+.perfil-item{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.1rem;border-radius:.5rem;
+  background:var(--br);border:1px solid var(--bo);
+  margin-bottom:.75rem;
+}
+.perfil-cor{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch}
+.perfil-nome{font-size:.95rem;font-weight:700;color:var(--v);margin-bottom:.25rem}
+.perfil-desc{font-size:.85rem;color:var(--ts);line-height:1.6;font-weight:300}
+
+/* ── PARA QUEM ── */
+.paraquem-sec{background:var(--v);padding:5rem 1.5rem}
+.paraquem-inner{max-width:680px;margin:0 auto;text-align:center}
+.paraquem-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;
+  color:var(--d);margin-bottom:2rem;
+}
+.paraquem-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2.5rem}
+.pq-item{
+  background:rgba(255,255,255,.05);border:1px solid rgba(248,227,140,.12);
+  border-radius:.5rem;padding:1rem;text-align:left;
+}
+.pq-icone{font-size:1.25rem;margin-bottom:.35rem}
+.pq-titulo{font-size:.9rem;font-weight:700;color:var(--br);margin-bottom:.2rem}
+.pq-desc{font-size:.8rem;color:#ffffff;line-height:1.5;font-weight:300}
+
+/* ── CTA FINAL ── */
+.cta-sec{padding:5rem 1.5rem;text-align:center;background:var(--cr)}
+.cta-inner{max-width:560px;margin:0 auto}
+.cta-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;
+  color:var(--v);line-height:1.2;margin-bottom:.75rem;
+}
+.cta-sub{font-size:.95rem;color:var(--ts);line-height:1.7;margin-bottom:2rem;font-weight:300}
+
+.preco-box{
+  background:var(--br);border:1px solid var(--bo);
+  border-radius:.75rem;padding:2rem;margin-bottom:1.5rem;
+}
+.pb-produto{
+  font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--de);margin-bottom:.5rem;font-weight:600;
+}
+.pb-nome{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:700;color:var(--v);
+  margin-bottom:1rem;line-height:1.3;
+}
+.pb-autor{font-size:.82rem;color:var(--ts);margin-bottom:1.25rem}
+.pb-sep{height:1px;background:var(--bo);margin-bottom:1.25rem}
+.pb-parcelado{font-size:.85rem;color:var(--ts);margin-bottom:.25rem}
+.pb-valor-p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:700;color:var(--v);line-height:1;
+}
+.pb-ou{font-size:.78rem;color:#3a3a3a;margin:.5rem 0}
+.pb-avista{font-size:.9rem;color:var(--ts)}
+.pb-avista strong{color:var(--v);font-weight:700}
+
+.btn-cta-final{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  width:100%;padding:1.15rem 2rem;
+  background:linear-gradient(135deg,var(--d) 0%,var(--dm) 100%);
+  border:none;border-radius:.5rem;font-family:'Instrument Sans',sans-serif;
+  font-size:1rem;font-weight:700;color:var(--v);cursor:pointer;
+  text-decoration:none;transition:all .2s;letter-spacing:.02em;margin-bottom:.75rem;
+}
+.btn-cta-final:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(248,227,140,.2)}
+
+.cta-garantia{font-size:.78rem;color:#3a3a3a;margin-bottom:.5rem}
+.cta-contato{font-size:.82rem;color:var(--ts)}
+.cta-contato a{color:var(--vm);font-weight:600;text-decoration:none}
+
+/* ── RODAPÉ ── */
+.rodape{background:var(--v);padding:1.75rem;text-align:center}
+.rod-txt{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--d);margin-bottom:.25rem}
+.rod-sub{font-size:.68rem;color:#f8e38c;letter-spacing:.08em}
+
+@media(max-width:580px){
+  .dims-grid{grid-template-columns:1fr}
+  .paraquem-grid{grid-template-columns:1fr}
+  .preco-hero{padding:1.25rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Análise Premium · Método VIDA · Ivan Vianna CFP®</div>
+
+    <h1 class="hero-h1">
+      Diagnóstico VIDA<br>
+      <em>de Maturidade Decisória</em><br>
+      Patrimonial™
+    </h1>
+
+    <p class="hero-sub">Mapeamento profundo das forças invisíveis que moldam suas decisões patrimoniais — memórias, narrativas e padrões que operam abaixo da consciência.</p>
+
+    <div class="hero-quote">
+      "Patrimônio não é apenas o resultado das decisões que tomamos.<br>
+      É o resultado dos estados internos a partir dos quais as tomamos."
+    </div>
+
+    <div class="preco-hero">
+      <div class="preco-parcelado">Parcelado em até</div>
+      <div class="preco-valor-parcelado">12× de R$ 154,82</div>
+      <div class="preco-parcelas">no cartão de crédito</div>
+      <div class="preco-sep"></div>
+      <div class="preco-avista-label">ou à vista</div>
+      <div class="preco-avista">R$ 1.497,00</div>
+    </div>
+
+    <a class="btn-comprar" href="https://pay.hotmart.com/W106191899W" target="_blank">
+      Quero o diagnóstico →
+    </a>
+
+    <div class="hero-garantia">Acesso imediato após o pagamento · Sessão de análise incluída</div>
+
+    <div class="hero-hotmart">
+      🔒 Pagamento seguro via Hotmart
+    </div>
+  </div>
+</section>
+
+<!-- ══ O QUE É ══ -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="sec-label">O que é este diagnóstico</div>
+    <h2 class="sec-titulo">Não é um teste de perfil de investidor.<br>É um mapa das suas origens decisórias.</h2>
+
+    <p class="sec-texto">Ao longo de 27 anos acompanhando empresários, executivos, médicos e advogados em suas decisões patrimoniais mais complexas, observei um padrão que se repete com incômoda regularidade: o problema raramente é falta de informação. Quase sempre, o problema está no estado interno de quem decide.</p>
+
+    <p class="sec-texto">O Diagnóstico VIDA de Maturidade Decisória Patrimonial™ foi desenvolvido para mapear sistematicamente as forças que operam abaixo da consciência — e que moldam suas decisões mesmo quando você acredita estar decidindo de forma puramente racional.</p>
+
+    <div class="sec-destaque">
+      "Entre os clientes que acompanhei, os maiores erros patrimoniais raramente ocorreram por falta de análise. Ocorreram porque o decisor não estava no estado interno certo para tomar aquela decisão naquele momento."
+    </div>
+
+    <p class="sec-texto">Este diagnóstico não entrega um relatório genérico. Entrega um mapeamento específico das suas três camadas de origem decisória — e um Plano VIDA de Regulação Comportamental desenvolvido a partir das suas respostas.</p>
+  </div>
+</section>
+
+<!-- ══ DIMENSÕES ══ -->
+<section class="dims-sec">
+  <div class="dims-inner">
+    <div class="dims-titulo">O que será mapeado</div>
+    <div class="dims-sub">4 dimensões · 32 questões · 8 perguntas abertas analisadas por Ivan antes da sessão</div>
+
+    <div class="dims-grid">
+      <div class="dim-card">
+        <div class="dim-letra">DIMENSÃO A</div>
+        <div class="dim-nome">Memórias financeiras formativas</div>
+        <div class="dim-desc">Experiências passadas deixam registros emocionais que o cérebro usa para navegar decisões futuras. Esta dimensão mapeia os eventos que mais moldaram sua relação com dinheiro e patrimônio.</div>
+        <div class="dim-exemplo">Inclui 2 questões abertas lidas por Ivan antes da sessão.</div>
+      </div>
+
+      <div class="dim-card">
+        <div class="dim-letra">DIMENSÃO B</div>
+        <div class="dim-nome">Money scripts e narrativas ativas</div>
+        <div class="dim-desc">Money scripts são crenças inconscientes sobre dinheiro — geralmente herdadas. Operam como filtros invisíveis entre a informação disponível e a decisão que você toma.</div>
+        <div class="dim-exemplo">Inclui 2 questões abertas lidas por Ivan antes da sessão.</div>
+      </div>
+
+      <div class="dim-card">
+        <div class="dim-letra">DIMENSÃO C</div>
+        <div class="dim-nome">Vieses decisórios ativos</div>
+        <div class="dim-desc">Cinco vieses com maior impacto patrimonial: aversão à perda, ancoragem, excesso de confiança, viés de confirmação e status quo. Cada um medido por situação comportamental real.</div>
+        <div class="dim-exemplo">Inclui 1 questão aberta sobre o viés mais ativo na sua última decisão.</div>
+      </div>
+
+      <div class="dim-card">
+        <div class="dim-letra">DIMENSÃO D</div>
+        <div class="dim-nome">Padrão decisório sob pressão</div>
+        <div class="dim-desc">O que você realmente faz quando algo relevante está em jogo, o tempo é curto e a informação é insuficiente. Esta é a dimensão com maior impacto no resultado patrimonial de longo prazo.</div>
+        <div class="dim-exemplo">Inclui 3 questões abertas — as mais importantes do diagnóstico.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMO FUNCIONA ══ -->
+<section class="como-sec">
+  <div class="como-inner">
+    <h2 class="como-titulo">Como funciona</h2>
+
+    <div class="passo">
+      <div class="passo-num">01</div>
+      <div class="passo-corpo">
+        <div class="passo-titulo">Você acessa o diagnóstico</div>
+        <div class="passo-desc">Após a confirmação do pagamento, você recebe o link de acesso por WhatsApp em até 24 horas úteis. O preenchimento leva entre 20 e 30 minutos.</div>
+      </div>
+    </div>
+
+    <div class="passo">
+      <div class="passo-num">02</div>
+      <div class="passo-corpo">
+        <div class="passo-titulo">Você responde com honestidade</div>
+        <div class="passo-desc">As perguntas medem comportamento real — o que você fez, não o que gostaria de ter feito. Não existe resposta certa ou errada. O valor do diagnóstico depende inteiramente da sua honestidade.</div>
+      </div>
+    </div>
+
+    <div class="passo">
+      <div class="passo-num">03</div>
+      <div class="passo-corpo">
+        <div class="passo-titulo">Resultado parcial imediato</div>
+        <div class="passo-desc">Ao finalizar, você vê seu IDCP™ (Índice VIDA de Desenvolvimento Comportamental Patrimonial), seu perfil de desenvolvimento e o mapa de origem dominante dos seus padrões.</div>
+      </div>
+    </div>
+
+    <div class="passo">
+      <div class="passo-num">04</div>
+      <div class="passo-corpo">
+        <div class="passo-titulo">Ivan lê suas respostas antes da sessão</div>
+        <div class="passo-desc">Suas 8 respostas abertas chegam diretamente a mim antes do nosso encontro. Leio cada resposta com atenção — é isso que torna a sessão estratégica, não genérica.</div>
+      </div>
+    </div>
+
+    <div class="passo">
+      <div class="passo-num">05</div>
+      <div class="passo-corpo">
+        <div class="passo-titulo">Sessão de análise individual</div>
+        <div class="passo-desc">Na sessão, apresento o Plano VIDA de Regulação Comportamental — resultado completo do diagnóstico, com ações priorizadas pelo seu perfil específico.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PERFIS ══ -->
+<section class="perfis-sec">
+  <div class="perfis-inner">
+    <h2 class="perfis-titulo">Os quatro perfis de desenvolvimento</h2>
+    <p class="perfis-sub">Não são rótulos fixos — são posições numa trajetória. O diagnóstico identifica onde você está e o caminho para o próximo estágio.</p>
+
+    <div class="perfil-item">
+      <div class="perfil-cor" style="background:#d7ae4d"></div>
+      <div>
+        <div class="perfil-nome">Decisor Integrado</div>
+        <div class="perfil-desc">Alta consciência das três camadas — formação, narrativa e padrão. Padrões identificados e gerenciados com consistência. O trabalho agora é de refinamento para contextos de alta complexidade.</div>
+      </div>
+    </div>
+
+    <div class="perfil-item">
+      <div class="perfil-cor" style="background:#a8d8c0"></div>
+      <div>
+        <div class="perfil-nome">Decisor em Transição</div>
+        <div class="perfil-desc">Consciência parcial. Identifica alguns padrões mas ainda é capturado por outros em contextos de pressão ou novidade. Perfil de maior potencial de desenvolvimento.</div>
+      </div>
+    </div>
+
+    <div class="perfil-item">
+      <div class="perfil-cor" style="background:#f0b860"></div>
+      <div>
+        <div class="perfil-nome">Decisor Reativo</div>
+        <div class="perfil-desc">Padrões operam predominantemente abaixo da consciência. Estado emocional exerce influência relevante nas decisões — com frequência maior do que o decisor percebe.</div>
+      </div>
+    </div>
+
+    <div class="perfil-item">
+      <div class="perfil-cor" style="background:#e09090"></div>
+      <div>
+        <div class="perfil-nome">Decisor Formativo</div>
+        <div class="perfil-desc">Fortemente governado pela camada de formação — memórias e narrativas herdadas dominam as decisões patrimoniais atuais. O trabalho comportamental deve preceder qualquer ajuste técnico.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARA QUEM ══ -->
+<section class="paraquem-sec">
+  <div class="paraquem-inner">
+    <h2 class="paraquem-titulo">Para quem é este diagnóstico</h2>
+
+    <div class="paraquem-grid">
+      <div class="pq-item">
+        <div class="pq-icone">🏢</div>
+        <div class="pq-titulo">Empresários</div>
+        <div class="pq-desc">Que tomam decisões de alto impacto sobre negócio e patrimônio e querem compreender o que está por trás dessas decisões.</div>
+      </div>
+      <div class="pq-item">
+        <div class="pq-icone">⚕️</div>
+        <div class="pq-titulo">Médicos</div>
+        <div class="pq-desc">Que acumularam patrimônio significativo mas percebem que suas decisões financeiras não têm a mesma qualidade das suas decisões clínicas.</div>
+      </div>
+      <div class="pq-item">
+        <div class="pq-icone">⚖️</div>
+        <div class="pq-titulo">Advogados</div>
+        <div class="pq-desc">Que estruturam patrimônio de terceiros com precisão mas identificam pontos cegos nas suas próprias decisões patrimoniais.</div>
+      </div>
+      <div class="pq-item">
+        <div class="pq-icone">📊</div>
+        <div class="pq-titulo">Executivos</div>
+        <div class="pq-desc">Que tomam decisões complexas no ambiente corporativo e querem a mesma qualidade decisória no planejamento do próprio patrimônio.</div>
+      </div>
+    </div>
+
+    <a class="btn-comprar" href="https://pay.hotmart.com/W106191899W" target="_blank" style="max-width:400px;margin:0 auto">
+      Quero o diagnóstico →
+    </a>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══ -->
+<section class="cta-sec">
+  <div class="cta-inner">
+    <h2 class="cta-titulo">Entenda a origem.<br>Transforme suas decisões.<br>Proteja seu legado.</h2>
+    <p class="cta-sub">O Diagnóstico VIDA de Maturidade Decisória Patrimonial™ é o primeiro passo para um planejamento patrimonial que considera não apenas o que você tem — mas como você decide sobre o que tem.</p>
+
+    <div class="preco-box">
+      <div class="pb-produto">Produto individual · Método VIDA</div>
+      <div class="pb-nome">Diagnóstico VIDA de Maturidade Decisória Patrimonial™</div>
+      <div class="pb-autor">Ivan Vianna · CFP® · Arquiteto de patrimônio</div>
+      <div class="pb-sep"></div>
+      <div class="pb-parcelado">Parcelado em até 12× de</div>
+      <div class="pb-valor-p">R$ 154,82</div>
+      <div class="pb-ou">ou</div>
+      <div class="pb-avista"><strong>R$ 1.497,00</strong> à vista</div>
+    </div>
+
+    <a class="btn-cta-final" href="https://pay.hotmart.com/W106191899W" target="_blank">
+      Quero o diagnóstico agora →
+    </a>
+
+    <div class="cta-garantia">🔒 Pagamento seguro · Acesso em até 24h · Sessão individual incluída</div>
+    <div class="cta-contato">Dúvidas? <a href="https://wa.me/5511979530555" target="_blank">WhatsApp (11) 97953-0555</a></div>
+  </div>
+</section>
+
+<!-- ══ RODAPÉ ══ -->
+<footer class="rodape">
+  <div class="rod-txt">Ivan Vianna · CFP® · Planejador financeiro · Arquiteto de patrimônio</div>
+  <div class="rod-sub">CNPJ 56.099.913/0001-61 · ivanviannafinancas.com.br · Método VIDA™ · 2026</div>
+</footer>
+
+</body>
+</html>
