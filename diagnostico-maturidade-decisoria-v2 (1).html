@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico VIDA de Maturidade Decisória Patrimonial™ · Ivan Vianna CFP®</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Instrument+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ve:#1A3C2E;
+  --vm:#2E5C46;
+  --d:#d7ae4d;
+  --dc:#f8e38c;
+  --br:#FFFFFF;
+  --bg:#0d1f18;
+  --bg2:#111f18;
+  --ts:rgba(255,255,255,0.72);
+  --tb:rgba(255,255,255,0.92);
+  --sep:rgba(255,255,255,0.10);
+  --r:6px;
+  --trans:all .22s cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Instrument Sans',sans-serif;
+  background:var(--bg);
+  color:var(--tb);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── TOPO ── */
+.topo{
+  background:var(--ve);
+  border-bottom:1px solid rgba(215,174,77,.25);
+  padding:.85rem 1.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.topo-marca{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;
+  font-weight:600;
+  color:var(--dc);
+  letter-spacing:.04em;
+}
+.topo-prog-wrap{
+  display:flex;align-items:center;gap:.75rem;
+}
+.topo-prog-label{
+  font-size:.72rem;
+  color:var(--ts);
+  white-space:nowrap;
+}
+.topo-prog-bar{
+  width:120px;height:4px;
+  background:rgba(255,255,255,.1);
+  border-radius:2px;overflow:hidden;
+}
+.topo-prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--ve),var(--d));
+  border-radius:2px;
+  transition:width .4s ease;
+}
+
+/* ── TELAS ── */
+.tela{display:none}
+.tela.ativa{display:block}
+
+/* ── CAPA ── */
+#tela-capa{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:4rem 1.5rem;
+  text-align:center;
+  background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(46,92,70,.45) 0%,transparent 70%),var(--bg);
+}
+.capa-eyebrow{
+  font-family:'Instrument Sans',sans-serif;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.18em;
+  color:var(--d);
+  text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.capa-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,6vw,3.2rem);
+  font-weight:300;
+  line-height:1.15;
+  color:var(--br);
+  max-width:640px;
+  margin-bottom:1.25rem;
+}
+.capa-h1 em{font-style:italic;color:var(--dc)}
+.capa-sub{
+  font-size:.95rem;
+  color:var(--ts);
+  max-width:520px;
+  line-height:1.7;
+  margin-bottom:2.5rem;
+}
+.btn-iniciar{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:linear-gradient(135deg,var(--d),var(--dc),var(--d));
+  color:var(--ve);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:.9rem;font-weight:700;
+  padding:.9rem 2.2rem;
+  border:none;border-radius:var(--r);
+  cursor:pointer;
+  letter-spacing:.04em;
+  transition:var(--trans);
+}
+.btn-iniciar:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(215,174,77,.35)}
+.capa-aviso{
+  margin-top:1.5rem;
+  font-size:.78rem;
+  color:var(--ts);
+  display:flex;align-items:center;gap:.4rem;
+  justify-content:center;
+}
+.capa-aviso::before{content:'🔒';font-size:.8rem}
+
+/* ── DIMENSÃO (seção) ── */
+#tela-quiz{padding:2.5rem 1.5rem 5rem}
+.dim-wrap{max-width:680px;margin:0 auto}
+.dim-header{
+  border-left:3px solid var(--d);
+  padding:.6rem 0 .6rem 1.1rem;
+  margin-bottom:2rem;
+}
+.dim-numero{
+  font-size:.7rem;font-weight:700;
+  letter-spacing:.15em;color:var(--d);
+  text-transform:uppercase;margin-bottom:.3rem;
+}
+.dim-nome{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.55rem;font-weight:600;
+  color:var(--br);line-height:1.2;
+}
+.dim-desc{font-size:.85rem;color:var(--ts);margin-top:.3rem;line-height:1.55}
+
+/* ── QUESTÃO ── */
+.q-wrap{
+  margin-bottom:1.75rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--sep);
+  border-radius:var(--r);
+  padding:1.4rem 1.4rem 1.1rem;
+  transition:var(--trans);
+}
+.q-wrap.respondida{border-color:rgba(215,174,77,.25)}
+.q-num{
+  font-size:.68rem;font-weight:700;
+  letter-spacing:.14em;color:var(--d);
+  text-transform:uppercase;margin-bottom:.6rem;
+}
+.q-texto{
+  font-size:1rem;line-height:1.6;
+  color:var(--tb);margin-bottom:1.1rem;
+}
+.q-opcoes{display:flex;flex-direction:column;gap:.55rem}
+.q-opcao{
+  display:flex;align-items:flex-start;gap:.75rem;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:calc(var(--r) - 1px);
+  padding:.75rem .9rem;
+  cursor:pointer;
+  transition:var(--trans);
+  text-align:left;
+}
+.q-opcao:hover{background:rgba(215,174,77,.06);border-color:rgba(215,174,77,.25)}
+.q-opcao.sel{background:rgba(215,174,77,.1);border-color:rgba(215,174,77,.45)}
+.q-letra{
+  flex-shrink:0;
+  width:22px;height:22px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;
+  color:var(--ts);
+  transition:var(--trans);
+  margin-top:1px;
+}
+.q-opcao.sel .q-letra{background:var(--d);border-color:var(--d);color:var(--ve)}
+.q-opcao-txt{font-size:.9rem;color:var(--ts);line-height:1.5}
+.q-opcao.sel .q-opcao-txt{color:var(--br)}
+
+/* ── ABERTA ── */
+.q-aberta{
+  width:100%;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:calc(var(--r) - 1px);
+  color:var(--br);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:.92rem;
+  padding:.8rem 1rem;
+  resize:vertical;
+  min-height:90px;
+  transition:var(--trans);
+}
+.q-aberta:focus{outline:none;border-color:rgba(215,174,77,.45);background:rgba(215,174,77,.05)}
+.q-aberta::placeholder{color:rgba(255,255,255,.3)}
+
+/* ── NAVEGAÇÃO ── */
+.nav-wrap{
+  max-width:680px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:1rem;
+  border-top:1px solid var(--sep);
+}
+.btn-nav{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.7rem 1.4rem;
+  border-radius:var(--r);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:.88rem;font-weight:600;
+  cursor:pointer;
+  transition:var(--trans);
+}
+.btn-nav-vol{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--ts);
+}
+.btn-nav-vol:hover{border-color:rgba(255,255,255,.3);color:var(--br)}
+.btn-nav-av{
+  background:linear-gradient(135deg,var(--d),var(--dc),var(--d));
+  border:none;
+  color:var(--ve);
+}
+.btn-nav-av:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(215,174,77,.3)}
+.btn-nav-av:disabled{opacity:.4;pointer-events:none}
+.nav-contagem{font-size:.78rem;color:var(--ts)}
+
+/* ── CAPTURA ── */
+#tela-captura{
+  min-height:100vh;display:flex;
+  align-items:center;justify-content:center;
+  padding:3rem 1.5rem;
+}
+.cap-inner{max-width:480px;width:100%;text-align:center}
+.cap-eyebrow{
+  font-size:.7rem;font-weight:700;
+  letter-spacing:.15em;color:var(--d);
+  text-transform:uppercase;margin-bottom:1rem;
+}
+.cap-h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:600;
+  color:var(--br);line-height:1.25;margin-bottom:.75rem;
+}
+.cap-sub{font-size:.88rem;color:var(--ts);line-height:1.65;margin-bottom:2rem}
+.cap-form{display:flex;flex-direction:column;gap:.85rem;text-align:left}
+.cap-label{font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--d);margin-bottom:.3rem}
+.cap-input{
+  width:100%;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--r);
+  color:var(--br);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:.92rem;
+  padding:.8rem 1rem;
+  transition:var(--trans);
+}
+.cap-input:focus{outline:none;border-color:rgba(215,174,77,.45)}
+.cap-input::placeholder{color:rgba(255,255,255,.25)}
+.btn-revelar{
+  width:100%;
+  margin-top:.5rem;
+  background:linear-gradient(135deg,var(--d),var(--dc),var(--d));
+  color:var(--ve);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:.92rem;font-weight:700;
+  padding:.95rem;
+  border:none;border-radius:var(--r);
+  cursor:pointer;
+  transition:var(--trans);
+  letter-spacing:.04em;
+}
+.btn-revelar:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(215,174,77,.3)}
+.cap-privacidade{
+  text-align:center;margin-top:.75rem;
+  font-size:.74rem;color:var(--ts);
+}
+
+/* ── RESULTADO ── */
+#tela-resultado{
+  padding:3rem 1.5rem 5rem;
+}
+.res-inner{max-width:680px;margin:0 auto}
+.res-supra{
+  font-size:.7rem;font-weight:700;
+  letter-spacing:.15em;color:var(--d);
+  text-transform:uppercase;margin-bottom:1rem;
+}
+.res-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  font-weight:300;color:var(--br);
+  line-height:1.2;margin-bottom:2rem;
+}
+.res-titulo strong{font-weight:600;color:var(--dc)}
+
+/* IDCP card */
+.idcp-card{
+  background:linear-gradient(135deg,var(--vm),var(--ve));
+  border:1px solid rgba(215,174,77,.3);
+  border-radius:10px;
+  padding:2rem;
+  text-align:center;
+  margin-bottom:2rem;
+}
+.idcp-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;color:var(--d);text-transform:uppercase;margin-bottom:.5rem}
+.idcp-numero{
+  font-family:'Cormorant Garamond',serif;
+  font-size:4.5rem;font-weight:700;
+  color:var(--dc);line-height:1;margin-bottom:.25rem;
+}
+.idcp-denom{font-size:.85rem;color:var(--ts)}
+.idcp-perfil{
+  display:inline-block;
+  margin-top:1rem;
+  background:rgba(215,174,77,.15);
+  border:1px solid rgba(215,174,77,.35);
+  border-radius:100px;
+  padding:.35rem 1.1rem;
+  font-size:.82rem;font-weight:600;
+  color:var(--dc);
+}
+
+/* Dimensões resultado */
+.dims-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1rem;margin-bottom:2rem;
+}
+.dim-res-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--sep);
+  border-radius:var(--r);
+  padding:1.25rem;
+}
+.dim-res-nome{font-size:.8rem;font-weight:600;color:var(--d);margin-bottom:.75rem;letter-spacing:.04em}
+.dim-res-barra-wrap{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:.5rem}
+.dim-res-barra{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--vm),var(--d));transition:width 1s ease}
+.dim-res-pct{font-size:.75rem;color:var(--ts)}
+.dim-res-desc{font-size:.82rem;color:var(--ts);line-height:1.55;margin-top:.75rem}
+
+/* Origem */
+.origem-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--sep);
+  border-radius:var(--r);
+  padding:1.5rem;
+  margin-bottom:2rem;
+}
+.origem-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:600;
+  color:var(--br);margin-bottom:1rem;
+}
+.origem-item{
+  display:flex;align-items:flex-start;gap:.75rem;
+  margin-bottom:.85rem;
+}
+.origem-dot{
+  flex-shrink:0;width:8px;height:8px;
+  border-radius:50%;background:var(--d);
+  margin-top:.4rem;
+}
+.origem-txt{font-size:.88rem;color:var(--ts);line-height:1.6}
+
+/* CTA sessão */
+.cta-sessao{
+  background:linear-gradient(135deg,var(--vm),var(--ve));
+  border:1px solid rgba(215,174,77,.3);
+  border-radius:10px;
+  padding:2rem;
+  text-align:center;
+  margin-bottom:1.5rem;
+}
+.cta-sessao-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-weight:600;
+  color:var(--br);margin-bottom:.65rem;
+}
+.cta-sessao-sub{font-size:.88rem;color:var(--ts);line-height:1.65;margin-bottom:1.5rem}
+.btn-sessao{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:linear-gradient(135deg,var(--d),var(--dc),var(--d));
+  color:var(--ve);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:.9rem;font-weight:700;
+  padding:.85rem 2rem;
+  border-radius:var(--r);
+  text-decoration:none;
+  transition:var(--trans);
+}
+.btn-sessao:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(215,174,77,.3)}
+
+/* assinatura */
+.assinatura{
+  text-align:center;
+  font-size:.75rem;
+  color:var(--ts);
+  padding-top:2rem;
+  border-top:1px solid var(--sep);
+  line-height:1.8;
+}
+
+/* ── LOADING ── */
+#tela-loading{
+  min-height:100vh;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:1.5rem;
+}
+.loading-ring{
+  width:52px;height:52px;
+  border:3px solid rgba(255,255,255,.08);
+  border-top-color:var(--d);
+  border-radius:50%;
+  animation:spin .9s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-size:.9rem;color:var(--ts)}
+
+@media(max-width:540px){
+  .topo-prog-bar{width:80px}
+  .nav-wrap{flex-direction:column-reverse;gap:.75rem;align-items:stretch}
+  .btn-nav{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPO -->
+<div class="topo">
+  <div class="topo-marca">MÉTODO VIDA™</div>
+  <div class="topo-prog-wrap">
+    <span class="topo-prog-label" id="prog-label">0 / 24</span>
+    <div class="topo-prog-bar"><div class="topo-prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<!-- TELA CAPA -->
+<div class="tela ativa" id="tela-capa">
+  <div class="capa-eyebrow">Diagnóstico VIDA · Instrumento Pago</div>
+  <h1 class="capa-h1">Mapeamento das forças<br>invisíveis que governam<br><em>suas decisões patrimoniais</em></h1>
+  <p class="capa-sub">24 situações reais. 4 dimensões de análise. Memórias financeiras, money scripts, vieses decisórios e padrão sob pressão — tudo que a análise financeira convencional não captura.</p>
+  <button class="btn-iniciar" onclick="iniciar()">Iniciar diagnóstico →</button>
+  <p class="capa-aviso">Confidencial · Exclusivo para quem adquiriu o diagnóstico</p>
+</div>
+
+<!-- TELA QUIZ -->
+<div class="tela" id="tela-quiz"></div>
+
+<!-- TELA CAPTURA -->
+<div class="tela" id="tela-captura">
+  <div class="cap-inner">
+    <div class="cap-eyebrow">Quase lá</div>
+    <h2 class="cap-h2">Identifique-se para receber<br>seu resultado completo</h2>
+    <p class="cap-sub">Suas respostas chegam diretamente a Ivan Vianna antes da sessão de análise. Preencha com atenção.</p>
+    <div class="cap-form">
+      <div>
+        <div class="cap-label">Seu nome</div>
+        <input class="cap-input" id="cap-nome" type="text" placeholder="Como prefere ser chamado(a)">
+      </div>
+      <div>
+        <div class="cap-label">WhatsApp</div>
+        <input class="cap-input" id="cap-tel" type="tel" placeholder="(11) 99999-9999" inputmode="numeric"
+          oninput="this.value=this.value.replace(/[^0-9\s()+-]/g,'')">
+      </div>
+      <div>
+        <div class="cap-label">E-mail</div>
+        <input class="cap-input" id="cap-email" type="email" placeholder="seu@email.com.br">
+      </div>
+      <div>
+        <div class="cap-label">E-mail utilizado na compra (Hotmart)</div>
+        <input class="cap-input" id="cap-email-compra" type="email" placeholder="mesmo e-mail da compra">
+        <p style="font-size:.72rem;color:rgba(255,255,255,0.5);margin-top:.4rem;line-height:1.5;">Informe o mesmo e-mail usado no momento da compra. Isso vincula suas respostas à sua aquisição.</p>
+      </div>
+      <button class="btn-revelar" onclick="finalizarCaptura()">Ver meu resultado →</button>
+      <p class="cap-privacidade">Exclusivo para quem adquiriu o diagnóstico · Dados tratados com absoluta confidencialidade</p>
+    </div>
+  </div>
+</div>
+
+<!-- TELA LOADING -->
+<div class="tela" id="tela-loading">
+  <div class="loading-ring"></div>
+  <p class="loading-txt">Processando suas respostas…</p>
+</div>
+
+<!-- TELA RESULTADO -->
+<div class="tela" id="tela-resultado"></div>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  CONTEÚDO — 4 DIMENSÕES · 24 QUESTÕES
+// ═══════════════════════════════════════════════════
+const DIMENSOES = [
+  {
+    id:'mem',
+    nome:'Memórias financeiras formativas',
+    desc:'As experiências que moldaram sua relação com dinheiro, risco e patrimônio — antes de qualquer análise racional.',
+    questoes:[
+      {
+        txt:'Qual foi a mensagem financeira mais marcante que você recebeu na infância ou adolescência — implícita ou explícita?',
+        tipo:'aberta',
+        placeholder:'Descreva a mensagem e quem a transmitiu…'
+      },
+      {
+        txt:'Você já viveu ou testemunhou de perto uma perda financeira significativa (falência, dívidas, perda de bens)? Como isso afetou sua relação com dinheiro até hoje?',
+        tipo:'aberta',
+        placeholder:'Descreva o episódio e seu impacto atual…'
+      },
+      {
+        txt:'Quando você pensa em dinheiro, qual é a primeira sensação espontânea que surge?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Segurança — dinheiro é proteção e estabilidade'},
+          {l:'B', txt:'Escassez — nunca é suficiente, mesmo quando é bastante'},
+          {l:'C', txt:'Poder — dinheiro define possibilidades e posição'},
+          {l:'D', txt:'Perigo — dinheiro atrai problemas, conflitos ou inveja'},
+          {l:'E', txt:'Instrumento — dinheiro é neutro, depende do que faço com ele'},
+        ]
+      },
+      {
+        txt:'Em relação à memória financeira mais marcante da sua história, você diria que ela ainda governa decisões concretas que você toma hoje?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Sim, claramente — identifico a influência em escolhas recentes'},
+          {l:'B', txt:'Provavelmente sim, mas não consigo precisar onde'},
+          {c:'C', txt:'Talvez, mas trabalho ativamente para não deixar que isso aconteça', l:'C'},
+          {l:'D', txt:'Não — revisei essas memórias e elas já não têm influência decisória'},
+        ]
+      },
+      {
+        txt:'Como as pessoas mais importantes da sua infância (pais, referências) se relacionavam com dinheiro?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Com ansiedade — falar sobre dinheiro gerava tensão ou conflito'},
+          {l:'B', txt:'Com silêncio — dinheiro era tabu, nunca se discutia abertamente'},
+          {l:'C', txt:'Com disciplina — havia regras claras sobre gastar e guardar'},
+          {l:'D', txt:'Com abundância — dinheiro era assunto natural e positivo'},
+          {l:'E', txt:'Com instabilidade — oscilavam entre fartura e escassez'},
+        ]
+      },
+      {
+        txt:'Descreva brevemente uma decisão financeira importante que você tomou nos últimos três anos que, em retrospecto, foi claramente influenciada por uma emoção ou memória — e não por análise objetiva.',
+        tipo:'aberta',
+        placeholder:'Qual foi a decisão e qual emoção a governou?'
+      },
+    ]
+  },
+  {
+    id:'scr',
+    nome:'Money scripts',
+    desc:'Crenças sobre dinheiro e riqueza que operam automaticamente, abaixo da consciência, herdadas ou construídas ao longo da vida.',
+    questoes:[
+      {
+        txt:'Qual das afirmações abaixo está mais próxima de uma crença que você percebe em si mesmo — mesmo que não concorde racionalmente com ela?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'"Pessoas ricas são gananciosas ou desonestas"'},
+          {l:'B', txt:'"Dinheiro demais traz problemas e conflitos"'},
+          {l:'C', txt:'"Nunca serei realmente rico — isso é para outras pessoas"'},
+          {l:'D', txt:'"Guardar dinheiro é não aproveitar a vida"'},
+          {l:'E', txt:'Não me identifico com nenhuma dessas crenças'},
+        ]
+      },
+      {
+        txt:'Quando você acumula mais dinheiro do que esperava ou recebe um ganho inesperado relevante, o que tipicamente acontece nos meses seguintes?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Mantenho — o valor se acumula e cresce de forma consistente'},
+          {l:'B', txt:'Gasto de forma não planejada, como se o dinheiro "pedisse" para sair'},
+          {l:'C', txt:'Fico ansioso e acabo tomando decisões apressadas com ele'},
+          {l:'D', txt:'Distribuo para família ou amigos — fica desconfortável ter mais que os outros'},
+          {l:'E', txt:'Varia muito — não identifico um padrão consistente'},
+        ]
+      },
+      {
+        txt:'Você acredita genuinamente que merece acumular e preservar riqueza significativa?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Sim, plenamente — não existe conflito interno nessa questão'},
+          {l:'B', txt:'Intelectualmente sim, mas algo interno resiste às vezes'},
+          {l:'C', txt:'Tenho dúvidas — especialmente quando ultrapasso certos patamares'},
+          {l:'D', txt:'É uma questão com a qual ainda não me reconciliei por completo'},
+        ]
+      },
+      {
+        txt:'Quando você pensa em deixar um patrimônio significativo para seus herdeiros, qual é sua reação mais espontânea?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Satisfação — é exatamente o que planejo construir'},
+          {l:'B', txt:'Preocupação — riqueza herdada costuma gerar problemas'},
+          {l:'C', txt:'Ambivalência — quero, mas não tenho certeza se é correto'},
+          {l:'D', txt:'Indiferença — não penso muito nisso no meu horizonte atual'},
+        ]
+      },
+      {
+        txt:'Qual das narrativas abaixo mais se assemelha a algo que você já disse ou pensou sobre sua situação financeira?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'"Quando eu tiver X, aí sim vou começar a planejar de verdade"'},
+          {l:'B', txt:'"No meu setor / família / geração é difícil — as condições não ajudam"'},
+          {l:'C', txt:'"Sempre aparece algo que impede meu progresso patrimonial"'},
+          {l:'D', txt:'Não me identifico com nenhuma dessas narrativas'},
+        ]
+      },
+      {
+        txt:'Descreva em suas próprias palavras uma crença sobre dinheiro ou riqueza que você suspeita que te limita — mesmo sem ter certeza de onde ela veio.',
+        tipo:'aberta',
+        placeholder:'Qual é essa crença e como ela se manifesta nas suas decisões?'
+      },
+    ]
+  },
+  {
+    id:'vie',
+    nome:'Vieses decisórios',
+    desc:'Padrões cognitivos que distorcem a análise patrimonial — operando de forma automática, especialmente em situações de incerteza ou novidade.',
+    questoes:[
+      {
+        txt:'Você comprou um ativo (imóvel, ação, fundo, empresa) que perdeu valor significativo. Qual é o seu comportamento mais típico nessa situação?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Mantenho porque "não perdi enquanto não vendi" — espero recuperar'},
+          {l:'B', txt:'Vendo rapidamente para eliminar a incerteza e seguir em frente'},
+          {l:'C', txt:'Analiso os fundamentos e decido com base no que faz sentido hoje'},
+          {l:'D', txt:'Fico paralisado — não consigo decidir nem manter nem vender'},
+        ]
+      },
+      {
+        txt:'Você recebe uma proposta de investimento com retorno histórico de 18% ao ano nos últimos 3 anos. Qual é sua reação mais honesta?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Atração imediata — esses números são convincentes'},
+          {l:'B', txt:'Ceticismo — desempenho passado não garante o futuro'},
+          {l:'C', txt:'Curiosidade — quero entender o mecanismo antes de qualquer coisa'},
+          {l:'D', txt:'Desconforto — rentabilidade alta demais ativa meu ceticismo automaticamente'},
+        ]
+      },
+      {
+        txt:'Quando você toma uma decisão patrimonial importante, com que frequência busca ativamente argumentos contrários à sua posição inicial?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Sempre — é parte do meu processo antes de qualquer decisão relevante'},
+          {l:'B', txt:'Às vezes — faço isso quando tenho dúvidas, mas não sistematicamente'},
+          {l:'C', txt:'Raramente — confio no meu julgamento inicial e nos dados que tenho'},
+          {l:'D', txt:'Nunca — tenderia a interpretar como sinal de indecisão'},
+        ]
+      },
+      {
+        txt:'Você investiu R$ 500.000,00 em um projeto que não está performando conforme o esperado. Já aportou R$ 200.000,00 adicionais para "salvar" o investimento original. O que acontece a seguir?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Continuo aportando — saio agora e perco tudo que investi'},
+          {l:'B', txt:'Paro — decido com base no que faz sentido daqui para frente, não no passado'},
+          {l:'C', txt:'Busco um terceiro para avaliar antes de qualquer novo movimento'},
+          {l:'D', txt:'Fico em paralisia — a situação me imobiliza'},
+        ]
+      },
+      {
+        txt:'Identifique o viés cognitivo que você acredita exercer maior influência nas suas decisões patrimoniais.',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Ancoragem — fico preso a um número ou referência inicial'},
+          {l:'B', txt:'Excesso de confiança — superestimo minha capacidade de previsão'},
+          {l:'C', txt:'Aversão à perda — perder pesa mais do que ganhar equivalente'},
+          {l:'D', txt:'Confirmação — busco dados que confirmam o que já acredito'},
+          {l:'E', txt:'Não consigo identificar claramente nenhum padrão dominante'},
+        ]
+      },
+      {
+        txt:'Descreva uma situação em que você percebeu, em retrospecto, que um viés cognitivo influenciou uma decisão patrimonial relevante. O que aconteceu e como você reconheceu o viés depois?',
+        tipo:'aberta',
+        placeholder:'Qual foi a decisão, qual viés atuou e como você percebeu?'
+      },
+    ]
+  },
+  {
+    id:'pre',
+    nome:'Padrão decisório sob pressão',
+    desc:'Como você decide quando o que está em jogo é relevante — tempo escasso, incerteza alta, ou quando há impacto emocional direto.',
+    questoes:[
+      {
+        txt:'Uma oportunidade de investimento com prazo de 48 horas chega até você com informações que parecem sólidas mas incompletas. Qual é o seu comportamento mais provável?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Passo — prazo artificial é sinal de alerta, não de oportunidade'},
+          {l:'B', txt:'Entro com uma posição menor para "testar" sem perder a oportunidade'},
+          {l:'C', txt:'Peço mais tempo e informação — se recusarem, descarto'},
+          {l:'D', txt:'Entro — oportunidades têm prazo e hesitação tem custo'},
+        ]
+      },
+      {
+        txt:'Quando você precisa tomar uma decisão patrimonial importante sem ter todas as informações que gostaria, o que acontece?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Decido assim mesmo — informação incompleta é o estado normal das coisas'},
+          {l:'B', txt:'Postergo — prefiro esperar do que errar com pressa'},
+          {l:'C', txt:'Identifico a informação mínima necessária e a busco antes de decidir'},
+          {l:'D', txt:'Terceirizo — delego a decisão a alguém de confiança'},
+        ]
+      },
+      {
+        txt:'Você já foi pressionado por alguém próximo (sócio, familiar, amigo) a tomar uma decisão financeira relevante que não estava convicto? O que aconteceu?',
+        tipo:'aberta',
+        placeholder:'Descreva a situação e qual foi sua decisão final…'
+      },
+      {
+        txt:'Quando um investimento que você fez começa a cair consistentemente por algumas semanas, qual é o seu estado interno mais honesto?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Calmo — acompanho os fundamentos, não o preço de curto prazo'},
+          {l:'B', txt:'Ansioso — verifico a posição repetidamente, mesmo sem fazer nada'},
+          {l:'C', txt:'Impulsionado a agir — a queda me faz querer "fazer algo"'},
+          {l:'D', txt:'Em negação — evito olhar para não ter que decidir'},
+        ]
+      },
+      {
+        txt:'Qual é o maior obstáculo interno que você enfrenta nas suas decisões patrimoniais mais relevantes?',
+        tipo:'opcoes',
+        opcoes:[
+          {l:'A', txt:'Excesso de análise — fico preso na busca de certeza e não decido'},
+          {l:'B', txt:'Impulsividade — decido rápido e me arrependo depois'},
+          {l:'C', txt:'Influência externa — deixo outros opinarem além do que deveria'},
+          {l:'D', txt:'Desconexão — não percebo que estou sob pressão até depois da decisão'},
+          {l:'E', txt:'Não me identifico claramente com nenhum desses padrões'},
+        ]
+      },
+      {
+        txt:'Descreva a decisão patrimonial mais difícil que você já tomou. O que estava em jogo, como você decidiu e o que faria diferente hoje?',
+        tipo:'aberta',
+        placeholder:'Descreva a decisão, o contexto e o que aprendeu com ela…'
+      },
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════════
+//  ESTADO
+// ═══════════════════════════════════════════════════
+const ST = {
+  dimIdx:0,
+  respostas:{},   // "dim-qidx": valor
+  abertas:{},     // "dim-qidx": texto
+  nome:'', tel:'', email:'', emailCompra:'',
+  totalRespondidas:0
+};
+
+const TOTAL_LIKERT = (() => {
+  let n=0;
+  DIMENSOES.forEach(d=>d.questoes.forEach(q=>{if(q.tipo==='opcoes')n++}));
+  return n;
+})();
+
+// ═══════════════════════════════════════════════════
+//  NAVEGAÇÃO DE TELAS
+// ═══════════════════════════════════════════════════
+function mostrar(id){
+  document.querySelectorAll('.tela').forEach(t=>t.classList.remove('ativa'));
+  document.getElementById(id).classList.add('ativa');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ═══════════════════════════════════════════════════
+//  PROGRESSO
+// ═══════════════════════════════════════════════════
+function atualizarProg(){
+  const resp = Object.keys(ST.respostas).length;
+  const pct = Math.round((resp / TOTAL_LIKERT)*100);
+  document.getElementById('prog-label').textContent = resp + ' / ' + TOTAL_LIKERT;
+  document.getElementById('prog-fill').style.width = pct + '%';
+}
+
+// ═══════════════════════════════════════════════════
+//  RENDERIZAR DIMENSÃO
+// ═══════════════════════════════════════════════════
+function renderDim(idx){
+  const dim = DIMENSOES[idx];
+  const container = document.getElementById('tela-quiz');
+  let html = `<div class="dim-wrap">
+    <div class="dim-header">
+      <div class="dim-numero">Dimensão ${idx+1} de ${DIMENSOES.length}</div>
+      <div class="dim-nome">${dim.nome}</div>
+      <div class="dim-desc">${dim.desc}</div>
+    </div>`;
+
+  dim.questoes.forEach((q,qi)=>{
+    const key = dim.id+'-'+qi;
+    const jaResp = ST.respostas[key] !== undefined;
+    html += `<div class="q-wrap${jaResp?' respondida':''}" id="qw-${key}">
+      <div class="q-num">Questão ${qi+1} de ${dim.questoes.length}</div>
+      <div class="q-texto">${q.txt}</div>`;
+
+    if(q.tipo==='opcoes'){
+      html += `<div class="q-opcoes">`;
+      q.opcoes.forEach((op,oi)=>{
+        const sel = ST.respostas[key]===oi;
+        html += `<button class="q-opcao${sel?' sel':''}" onclick="selOp('${key}',${oi},this)">
+          <div class="q-letra">${op.l}</div>
+          <div class="q-opcao-txt">${op.txt}</div>
+        </button>`;
+      });
+      html += `</div>`;
+    } else {
+      const val = ST.abertas[key]||'';
+      html += `<textarea class="q-aberta" id="ab-${key}" placeholder="${q.placeholder||'Descreva com honestidade…'}" oninput="salvarAberta('${key}',this.value)">${val}</textarea>`;
+    }
+    html += `</div>`;
+  });
+
+  // navegação
+  const isUltima = idx === DIMENSOES.length-1;
+  html += `<div class="nav-wrap">`;
+  if(idx>0){
+    html += `<button class="btn-nav btn-nav-vol" onclick="irDim(${idx-1})">← Anterior</button>`;
+  } else {
+    html += `<span></span>`;
+  }
+  html += `<span class="nav-contagem">Dimensão ${idx+1} / ${DIMENSOES.length}</span>`;
+  if(!isUltima){
+    html += `<button class="btn-nav btn-nav-av" id="btn-av" onclick="irDim(${idx+1})">Próxima dimensão →</button>`;
+  } else {
+    html += `<button class="btn-nav btn-nav-av" id="btn-av" onclick="irCaptura()">Finalizar diagnóstico →</button>`;
+  }
+  html += `</div></div>`;
+
+  container.innerHTML = html;
+  mostrar('tela-quiz');
+  atualizarProg();
+}
+
+function selOp(key, idx, btn){
+  // desselecionar outras
+  const qw = document.getElementById('qw-'+key);
+  qw.querySelectorAll('.q-opcao').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  qw.classList.add('respondida');
+  ST.respostas[key] = idx;
+  atualizarProg();
+}
+
+function salvarAberta(key, val){
+  ST.abertas[key] = val;
+}
+
+function irDim(idx){
+  ST.dimIdx = idx;
+  renderDim(idx);
+}
+
+function iniciar(){
+  try {
+    if(!DIMENSOES || DIMENSOES.length === 0) throw new Error('Dimensoes vazias');
+    renderDim(0);
+  } catch(e) {
+    console.error('Erro iniciar:', e);
+    alert('Erro ao carregar. Recarregue a página (Cmd+Shift+R).');
+  }
+}
+
+function irCaptura(){
+  mostrar('tela-captura');
+}
+
+// ═══════════════════════════════════════════════════
+//  CAPTURA + ENVIO
+// ═══════════════════════════════════════════════════
+function finalizarCaptura(){
+  const nome  = document.getElementById('cap-nome').value.trim();
+  const tel   = document.getElementById('cap-tel').value.trim();
+  const email = document.getElementById('cap-email').value.trim();
+  const emailCompra = document.getElementById('cap-email-compra').value.trim();
+  if(!nome){alert('Por favor, informe seu nome.');return;}
+  if(!email){alert('Informe seu e-mail.');return;}
+  if(!emailCompra){alert('Informe o e-mail utilizado na compra.');return;}
+  ST.nome  = nome;
+  ST.tel   = tel.replace(/\D/g,'');
+  ST.email = email;
+  ST.emailCompra = emailCompra;
+  mostrar('tela-loading');
+  setTimeout(()=>{
+    enviarWebhook();
+    renderResultado();
+  }, 1800);
+}
+
+function enviarWebhook(){
+  try{
+    const WH='https://script.google.com/macros/s/AKfycbzsVpO_OoWVjENJyDP2MCY-wGNqSnuz1oc6txaATRksQNRJCwrOaJaKlGzv2bQQI0I/exec';
+    // Montar resumo das respostas abertas
+    const abertasStr = Object.entries(ST.abertas).map(([k,v])=>k+': '+v).join(' | ');
+    // Scores por dimensão
+    const scores = calcScores();
+    const params = new URLSearchParams({
+      sheet:'MaturidadeDecisoriaDiag',
+      nome: ST.nome,
+      tel:  ST.tel,
+      email: ST.email,
+      email_compra: ST.emailCompra,
+      idcp: scores.idcp,
+      mem:  scores.mem,
+      scr:  scores.scr,
+      vie:  scores.vie,
+      pre:  scores.pre,
+      perfil: scores.perfil,
+      abertas: abertasStr.substring(0,2000)
+    });
+    new Image().src = WH+'?'+params.toString();
+  }catch(e){}
+}
+
+// ═══════════════════════════════════════════════════
+//  CÁLCULO DE SCORES
+// ═══════════════════════════════════════════════════
+function calcScores(){
+  // Peso por opção selecionada (posição 0=mais limitante, última=mais integrado)
+  // Simplificação: normalizar pelo total de questões de opcoes por dimensão
+  const dimScores = {};
+  DIMENSOES.forEach(dim=>{
+    let pts=0, max=0;
+    dim.questoes.forEach((q,qi)=>{
+      if(q.tipo==='opcoes'){
+        const nOp = q.opcoes.length;
+        const sel = ST.respostas[dim.id+'-'+qi];
+        if(sel !== undefined){
+          // Última opção = mais integrado (maior pontuação)
+          pts += sel; max += (nOp-1);
+        } else {
+          max += (nOp-1);
+        }
+      }
+    });
+    dimScores[dim.id] = max>0 ? Math.round((pts/max)*100) : 50;
+  });
+
+  const idcp = Math.round((dimScores.mem+dimScores.scr+dimScores.vie+dimScores.pre)/4);
+
+  let perfil;
+  if(idcp>=75)       perfil='Decisor integrado';
+  else if(idcp>=52)  perfil='Decisor em transição';
+  else if(idcp>=32)  perfil='Decisor reativo';
+  else               perfil='Decisor formativo';
+
+  return {
+    idcp,
+    mem: dimScores.mem,
+    scr: dimScores.scr,
+    vie: dimScores.vie,
+    pre: dimScores.pre,
+    perfil
+  };
+}
+
+// ═══════════════════════════════════════════════════
+//  RESULTADO
+// ═══════════════════════════════════════════════════
+const PERFIS = {
+  'Decisor integrado':{
+    desc:'Alta consciência das três camadas — formação, narrativa e padrão. Seus padrões estão identificados e gerenciados com consistência. O foco agora é refinar o processo e estruturar a governança patrimonial no nível mais elevado.',
+    origem:'Seus padrões parecem ter origem predominante em escolhas deliberadas e revisão contínua das suas crenças e memórias. Isso é raro e o posiciona de forma diferenciada.',
+    sessao:'A sessão de análise explorará como aprofundar sua governança decisória e identificar os últimos pontos cegos que ainda operam abaixo da consciência.'
+  },
+  'Decisor em transição':{
+    desc:'Consciência parcial das forças que governam suas decisões. Você identifica alguns padrões, mas ainda é capturado por outros em contextos de pressão ou novidade.',
+    origem:'Seus padrões parecem ter origem mista — parte em memórias formativas, parte em crenças herdadas que ainda não foram totalmente revisadas.',
+    sessao:'A sessão de análise mapeará precisamente quais padrões ainda operam automaticamente e construirá um Plano VIDA de Regulação Comportamental personalizado.'
+  },
+  'Decisor reativo':{
+    desc:'Seus padrões operam predominantemente abaixo da consciência. O estado emocional exerce influência relevante nas suas decisões patrimoniais — muitas vezes sem que você perceba no momento.',
+    origem:'Seus padrões têm origem predominante em memórias financeiras formativas e money scripts herdados que ainda não foram revisados e integrados.',
+    sessao:'A sessão de análise é um passo essencial. Identificaremos as raízes dos seus padrões reativos e construiremos estruturas decisórias que compensem essas influências.'
+  },
+  'Decisor formativo':{
+    desc:'Suas decisões patrimoniais são fortemente governadas pela camada de formação — memórias e narrativas herdadas dominam suas escolhas atuais, muitas vezes sem que você tenha consciência disso.',
+    origem:'A origem dos seus padrões está concentrada na camada de formação — experiências da infância, mensagens familiares sobre dinheiro e crenças herdadas que nunca foram revisadas conscientemente.',
+    sessao:'A sessão de análise é o primeiro passo estruturado para mudar essa equação. Trabalharemos na identificação e revisão das crenças que mais limitam sua arquitetura patrimonial.'
+  }
+};
+
+const DIM_NOMES = {
+  mem:'Memórias financeiras',
+  scr:'Money scripts',
+  vie:'Vieses decisórios',
+  pre:'Padrão sob pressão'
+};
+
+const DIM_DESCS = {
+  mem:(p)=>p>=60?'Suas memórias financeiras estão razoavelmente integradas — você as identifica e gerencia na maior parte do tempo.':'Suas memórias financeiras exercem influência relevante nas suas decisões, muitas vezes abaixo da consciência.',
+  scr:(p)=>p>=60?'Seus money scripts são parcialmente conscientes — você consegue identificar algumas das crenças que te limitam.':'Crenças sobre dinheiro operam de forma automática e exercem influência não reconhecida nas suas decisões.',
+  vie:(p)=>p>=60?'Você demonstra consciência razoável sobre seus vieses cognitivos e busca corrigi-los em parte.':'Vieses cognitivos, especialmente aversão à perda e ancoragem, distorcem sua análise patrimonial com frequência.',
+  pre:(p)=>p>=60?'Seu padrão decisório sob pressão é relativamente estruturado — você mantém o processo na maior parte das situações.':'Sob pressão, seus padrões automáticos dominam — emoção e urgência substituem o processo.'
+};
+
+function renderResultado(){
+  const sc = calcScores();
+  const perf = PERFIS[sc.perfil];
+  const dims = [
+    {id:'mem', pct:sc.mem},
+    {id:'scr', pct:sc.scr},
+    {id:'vie', pct:sc.vie},
+    {id:'pre', pct:sc.pre},
+  ];
+
+  let html = `<div class="res-inner">
+    <div class="res-supra">Diagnóstico VIDA · Maturidade Decisória Patrimonial™</div>
+    <h2 class="res-titulo">${ST.nome}, este é o mapa<br>das suas <strong>forças decisórias</strong></h2>
+
+    <div class="idcp-card">
+      <div class="idcp-label">IDCP™ — Índice VIDA de Desenvolvimento Comportamental Patrimonial</div>
+      <div class="idcp-numero" id="idcp-num">0</div>
+      <div class="idcp-denom">de 100 pontos</div>
+      <div class="idcp-perfil">${sc.perfil}</div>
+    </div>
+
+    <div class="dims-grid">`;
+
+  dims.forEach(d=>{
+    html += `<div class="dim-res-card">
+      <div class="dim-res-nome">${DIM_NOMES[d.id]}</div>
+      <div class="dim-res-barra-wrap"><div class="dim-res-barra" id="bar-${d.id}" style="width:0%"></div></div>
+      <div class="dim-res-pct">${d.pct} / 100</div>
+      <div class="dim-res-desc">${DIM_DESCS[d.id](d.pct)}</div>
+    </div>`;
+  });
+
+  html += `</div>
+
+    <div class="origem-card">
+      <div class="origem-titulo">Leitura do seu perfil: ${sc.perfil}</div>
+      <div class="origem-item"><div class="origem-dot"></div><div class="origem-txt">${perf.desc}</div></div>
+      <div class="origem-item"><div class="origem-dot"></div><div class="origem-txt">${perf.origem}</div></div>
+    </div>
+
+    <div class="cta-sessao">
+      <div class="cta-sessao-titulo">Próximo passo: sua sessão de análise</div>
+      <p class="cta-sessao-sub">${perf.sessao}<br><br>Ivan Vianna já recebeu suas respostas e está preparando sua análise. Você receberá o contato para agendamento em até 24 horas úteis.</p>
+      <a class="btn-sessao" href="https://wa.me/5511979530555?text=Olá%20Ivan%2C%20finalizei%20o%20Diagnóstico%20VIDA%20de%20Maturidade%20Decisória.%20Meu%20nome%20é%20${encodeURIComponent(ST.nome)}%20e%20aguardo%20o%20agendamento%20da%20sessão." target="_blank">Confirmar disponibilidade via WhatsApp →</a>
+    </div>
+
+    <div class="assinatura">
+      Ivan Vianna · CFP® · Planejador financeiro · Arquiteto de patrimônio<br>
+      CNPJ 56.099.913/0001-61 · ivanviannafinancas.com.br
+    </div>
+  </div>`;
+
+  document.getElementById('tela-resultado').innerHTML = html;
+  mostrar('tela-resultado');
+
+  // Animações
+  setTimeout(()=>{
+    animarNumero(document.getElementById('idcp-num'), sc.idcp);
+    dims.forEach(d=>{
+      const el = document.getElementById('bar-'+d.id);
+      if(el) el.style.width = d.pct+'%';
+    });
+  }, 200);
+}
+
+function animarNumero(el, alvo){
+  let atual=0;
+  const passo = Math.max(1, Math.floor(alvo/50));
+  const t = setInterval(()=>{
+    atual = Math.min(atual+passo, alvo);
+    el.textContent = atual;
+    if(atual>=alvo) clearInterval(t);
+  }, 25);
+}
+</script>
+</body>
+</html>
