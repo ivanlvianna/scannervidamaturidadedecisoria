@@ -408,7 +408,7 @@ canvas#radar{display:block;max-width:100%;margin:0 auto}
         <input class="cap-input" id="cap-tel" type="tel" placeholder="(11) 99999-9999" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9\s()+-]/g,'')" maxlength="20">
       </div>
     </div>
-    <button class="btn-revelar" onclick="continuarAposCaptura()">Continuar o scanner →</button>
+    <div id="lgpd-aviso" style="margin:16px 0;padding:14px;border:1px solid #d9d2c2;border-radius:8px;font-size:13px;line-height:1.5;color:#3a3a3a;text-align:left;"><p style="margin:0 0 10px 0;">Antes de continuar: os dados que voce informar (nome, contato e suas respostas) sao tratados por <strong>Ivan Vianna, CFP</strong> (CNPJ 56.099.913/0001-61) para gerar o seu resultado e, caso autorize, para contato sobre este diagnostico. Nao coletamos dados sensiveis (Art. 5 II, LGPD). Solicitacoes de acesso, correcao ou eliminacao: <a href="mailto:ivan@ivanviannafinancas.com.br">ivan@ivanviannafinancas.com.br</a>.</p><label style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;cursor:pointer;"><input type="checkbox" id="lgpd-consent-dados" style="margin-top:3px;"><span>Autorizo o tratamento dos dados informados para gerar meu resultado e para contato sobre este diagnostico. <strong>(obrigatorio)</strong></span></label><label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;"><input type="checkbox" id="lgpd-consent-marketing" style="margin-top:3px;"><span>Tambem quero receber conteudo sobre planejamento financeiro e o Metodo VIDA por e-mail/WhatsApp. <strong>(opcional)</strong></span></label></div><button class="btn-revelar" onclick="if(!document.getElementById('lgpd-consent-dados').checked){alert('Marque a autorizacao de tratamento de dados para continuar.');return;}continuarAposCaptura()">Continuar o scanner →</button>
     <div class="cap-privacidade">Seus dados não são compartilhados com terceiros.</div>
   </div>
 </div>
@@ -934,7 +934,7 @@ function mostrarResultado(){
       perfil:p.nome,
       qdp:sc.qdpPct,
       rep:sc.repPct,
-      perfil_chave:sc.perfil
+      perfil_chave:sc.perfil,consentimento_dados:document.getElementById('lgpd-consent-dados').checked,consentimento_marketing:(document.getElementById('lgpd-consent-marketing')||{}).checked||false,versao_politica_privacidade:'2026-07-14'
     });
     new Image().src=WH+'?'+params.toString();
   }catch(e){}
